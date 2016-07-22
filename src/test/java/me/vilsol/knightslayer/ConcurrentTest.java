@@ -49,10 +49,6 @@ public class ConcurrentTest {
         System.out.println("Average battle count of " + games.size() + " battles: " + games.stream().mapToInt(Game::getBattleCount).average().getAsDouble());
 
         for (Weather weather : Weather.values()) {
-            if(weather == Weather.STORM){
-                continue;
-            }
-
             int count = (int) games.stream().filter(g -> g.getWeather() == weather).count();
             OptionalDouble average = games.stream().filter(g -> g.getWeather() == weather).mapToInt(Game::getBattleCount).average();
 
