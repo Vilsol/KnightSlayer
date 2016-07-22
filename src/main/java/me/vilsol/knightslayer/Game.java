@@ -17,7 +17,9 @@ public class Game {
         this.knight = new Knight(gameData.getJSONObject("knight"));
         this.dragon = new Dragon(this);
         this.weather = Weather.getWeather(id);
+
         dragon.prepare(weather);
+        dragon.rebuildDragon();
     }
 
     public int getId() {
