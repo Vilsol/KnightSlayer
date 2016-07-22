@@ -1,6 +1,6 @@
 # KnightSlayer
 
-This is a solution to the game "Dragons of Mugloar" http://www.dragonsofmugloar.com/ using a very simple weight based network, which takes the knight, and adjusts weights depending on the weather.
+This is a solution to the game "Dragons of Mugloar" http://www.dragonsofmugloar.com/ using a very simple weight based network, which is based on the knight, and adjusts weights depending on the weather.
 
 Currently can achieve >= 100% accuracy.
 
