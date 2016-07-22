@@ -10,6 +10,7 @@ public class Game {
     private Weather weather;
     private int battleCount = 0;
     private BattleResult lastBattle;
+    private BattleResult secondToLastBattle;
 
     public Game(JSONObject gameData) {
         this.id = gameData.getInt("gameId");
@@ -43,10 +44,15 @@ public class Game {
         return lastBattle;
     }
 
+    public BattleResult getSecondToLastBattle() {
+        return secondToLastBattle;
+    }
+
     public boolean win() {
         BattleResult battle = battle();
         battleCount += 1;
         while(battle.getGameStatus() == GameStatus.DEFEAT){
+            secondToLastBattle = lastBattle;
             lastBattle = battle;
 
             if(battleCount >= 25){
@@ -84,6 +90,7 @@ public class Game {
             battleCount++;
         }
 
+        secondToLastBattle = lastBattle;
         lastBattle = battle;
 
         return true;
@@ -102,6 +109,7 @@ public class Game {
                 ", weather=" + weather +
                 ", battleCount=" + battleCount +
                 ", lastBattle=" + lastBattle +
+                ", secondToLastBattle=" + secondToLastBattle +
                 '}';
     }
 }
