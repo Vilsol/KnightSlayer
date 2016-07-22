@@ -24,7 +24,7 @@ public class ConcurrentTest {
             int id = i;
             Runnable worker = () -> {
                 try {
-                    JSONObject gameData = Unirest.get("http://www.dragonsofmugloar.com/api/play").asJson().getBody().getObject();
+                    JSONObject gameData = Unirest.get("http://www.dragonsofmugloar.com/api/game").asJson().getBody().getObject();
                     play(gameData, id);
                 } catch (UnirestException e) {
                     e.printStackTrace();
