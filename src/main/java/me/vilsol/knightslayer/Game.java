@@ -101,6 +101,7 @@ public class Game {
                 ", dragon=" + dragon +
                 ", weather=" + weather +
                 ", battleCount=" + battleCount +
+                ", lastBattle=" + lastBattle +
                 '}';
     }
 }
