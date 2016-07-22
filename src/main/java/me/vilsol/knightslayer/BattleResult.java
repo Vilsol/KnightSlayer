@@ -19,7 +19,10 @@ public class BattleResult {
 
             result = request.asJson().getBody().getObject();
             gameStatus = GameStatus.getStatus(result.getString("status"));
-            defeatCause = DefeatCause.getCause(result.getString("message"));
+
+            if(gameStatus == GameStatus.DEFEAT) {
+                defeatCause = DefeatCause.getCause(result.getString("message"));
+            }
         } catch (UnirestException ignored) {
         }
     }

@@ -114,6 +114,21 @@ public class Dragon {
                 wingStrengthWeight = 1;
                 fireBreathWeight = 1;
                 break;
+            case NORMAL:
+                Knight knight = game.getKnight();
+                int max = Math.max(knight.getAttack(), Math.max(knight.getArmor(), Math.max(knight.getAgility(), knight.getEndurance())));
+
+                if (max == knight.getAttack()) {
+                    increaseScaleThicknessWeight();
+                } else if (max == knight.getArmor()) {
+                    increaseClawSharpnessWeightWeight();
+                } else if (max == knight.getAgility()) {
+                    increaseWingStrengthWeightWeight();
+                } else if (max == knight.getEndurance()) {
+                    increaseFireBreathWeightWeight();
+                }
+
+                break;
         }
     }
 

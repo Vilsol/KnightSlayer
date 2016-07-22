@@ -57,11 +57,15 @@ public class Game {
             secondToLastBattle = lastBattle;
             lastBattle = battle;
 
-            if(battleCount >= 25){
-                return false;
+            if(battleCount >= 5){
+                return false; // Something is really wrong
             }
 
-            if(battle.getDefeatCause() == null || battle.getDefeatCause() == DefeatCause.STORM){
+            if(battle.getDefeatCause() == DefeatCause.STORM){
+                return false; // No point, it's a storm
+            }
+
+            if(battle.getDefeatCause() == null){
                 return false;
             }
 
