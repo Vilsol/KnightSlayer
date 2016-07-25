@@ -51,7 +51,7 @@ public class ConcurrentTest {
     public void play(JSONObject gameData, int id){
         Game game = new Game(gameData);
         game.win();
-        System.out.println(id + ": " + game.getBattle().getGameStatus() + " - " + game.getKnight() + " VS " + game.getDragon());
+        System.out.println(id + ": " + game.getBattle().getGameStatus() + " - " + game.getKnight() + " VS " + game.getDragon().toString(true));
         games.add(game);
     }
 

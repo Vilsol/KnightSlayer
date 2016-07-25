@@ -138,15 +138,25 @@ public class Dragon {
 
     @Override
     public String toString() {
-        return "Dragon{" +
+        return toString(false);
+    }
+
+    public String toString(boolean noWeights) {
+        String response = "Dragon{" +
                 "scaleThickness=" + scaleThickness +
                 ", clawSharpness=" + clawSharpness +
                 ", wingStrength=" + wingStrength +
-                ", fireBreath=" + fireBreath +
-                ", scaleThicknessWeight=" + scaleThicknessWeight +
-                ", clawSharpnessWeight=" + clawSharpnessWeight +
-                ", wingStrengthWeight=" + wingStrengthWeight +
-                ", fireBreathWeight=" + fireBreathWeight +
-                '}';
+                ", fireBreath=" + fireBreath;
+
+        if(!noWeights){
+            response += ", scaleThicknessWeight=" + scaleThicknessWeight +
+                    ", clawSharpnessWeight=" + clawSharpnessWeight +
+                    ", wingStrengthWeight=" + wingStrengthWeight +
+                    ", fireBreathWeight=" + fireBreathWeight;
+        }
+
+        response += '}';
+
+        return response;
     }
 }
