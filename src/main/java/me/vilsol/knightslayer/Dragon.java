@@ -23,8 +23,6 @@ public class Dragon {
         clawSharpnessWeight = game.getKnight().getArmor();
         wingStrengthWeight = game.getKnight().getAgility();
         fireBreathWeight = game.getKnight().getEndurance();
-
-        rebuildDragon();
     }
 
     public void rebuildDragon(){
@@ -74,22 +72,6 @@ public class Dragon {
         fireBreathWeight += diffAmount();
     }
 
-    public void decreaseScaleThicknessWeight(){
-        scaleThicknessWeight -= diffAmount();
-    }
-
-    public void decreaseClawSharpnessWeightWeight(){
-        clawSharpnessWeight -= diffAmount();
-    }
-
-    public void decreaseWingStrengthWeightWeight(){
-        wingStrengthWeight -= diffAmount();
-    }
-
-    public void decreaseFireBreathWeightWeight(){
-        fireBreathWeight -= diffAmount();
-    }
-
     public void balance() {
         double total = scaleThicknessWeight + clawSharpnessWeight + wingStrengthWeight + fireBreathWeight;
         double average = total / 4d;
@@ -130,6 +112,8 @@ public class Dragon {
 
                 break;
         }
+
+        rebuildDragon();
     }
 
     public double diffAmount(){
@@ -137,22 +121,6 @@ public class Dragon {
                 clawSharpnessWeight +
                 wingStrengthWeight +
                 fireBreathWeight) / 4d;
-    }
-
-    public int getScaleThickness() {
-        return scaleThickness;
-    }
-
-    public int getClawSharpness() {
-        return clawSharpness;
-    }
-
-    public int getWingStrength() {
-        return wingStrength;
-    }
-
-    public int getFireBreath() {
-        return fireBreath;
     }
 
     public JSONObject toJson() {

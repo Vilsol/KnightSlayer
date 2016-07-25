@@ -27,6 +27,10 @@ public class BattleResult {
         }
     }
 
+    private BattleResult(){
+        this.gameStatus = GameStatus.VICTORY;
+    }
+
     public GameStatus getGameStatus() {
         return gameStatus;
     }
@@ -43,4 +47,9 @@ public class BattleResult {
                 ", defeatCause=" + defeatCause +
                 '}';
     }
+
+    public static BattleResult noBattle() {
+        return new BattleResult();
+    }
+
 }

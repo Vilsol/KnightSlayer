@@ -8,18 +8,14 @@ public class Game {
     private Knight knight;
     private Dragon dragon;
     private Weather weather;
-    private int battleCount = 0;
-    private BattleResult lastBattle;
-    private BattleResult secondToLastBattle;
+    private BattleResult battle;
 
     public Game(JSONObject gameData) {
         this.id = gameData.getInt("gameId");
         this.knight = new Knight(gameData.getJSONObject("knight"));
         this.dragon = new Dragon(this);
         this.weather = Weather.getWeather(id);
-
         dragon.prepare(weather);
-        dragon.rebuildDragon();
     }
 
     public int getId() {
@@ -38,68 +34,17 @@ public class Game {
         return weather;
     }
 
-    public int getBattleCount() {
-        return battleCount;
-    }
-
-    public BattleResult getLastBattle() {
-        return lastBattle;
-    }
-
-    public BattleResult getSecondToLastBattle() {
-        return secondToLastBattle;
+    public BattleResult getBattle() {
+        return battle;
     }
 
     public boolean win() {
-        BattleResult battle = battle();
-        battleCount += 1;
-        while(battle.getGameStatus() == GameStatus.DEFEAT){
-            secondToLastBattle = lastBattle;
-            lastBattle = battle;
-
-            if(battleCount >= 5){
-                return false; // Something is really wrong
-            }
-
-            if(battle.getDefeatCause() == DefeatCause.STORM){
-                return false; // No point, it's a storm
-            }
-
-            if(battle.getDefeatCause() == null){
-                return false;
-            }
-
-            switch (battle.getDefeatCause()){
-                case ATTACK:
-                    dragon.increaseScaleThicknessWeight();
-                    break;
-                case ARMOR:
-                    dragon.increaseClawSharpnessWeightWeight();
-                    break;
-                case AGILITY:
-                    dragon.increaseWingStrengthWeightWeight();
-                    break;
-                case ENDURANCE:
-                    dragon.increaseFireBreathWeightWeight();
-                    break;
-                case BOAT:
-                    dragon.increaseClawSharpnessWeightWeight();
-                    dragon.increaseWingStrengthWeightWeight();
-                    break;
-                case BALANCED:
-                    dragon.balance();
-                    break;
-            }
-
-            dragon.rebuildDragon();
-            battle = battle();
-            battleCount++;
+        if(weather == Weather.STORM){
+            battle = BattleResult.noBattle();
+            return true;
         }
 
-        secondToLastBattle = lastBattle;
-        lastBattle = battle;
-
-        return true;
+        return (battle = battle()).getGameStatus() == GameStatus.VICTORY;
     }
 
     public BattleResult battle(){
@@ -113,9 +58,7 @@ public class Game {
                 ", knight=" + knight +
                 ", dragon=" + dragon +
                 ", weather=" + weather +
-                ", battleCount=" + battleCount +
-                ", lastBattle=" + lastBattle +
-                ", secondToLastBattle=" + secondToLastBattle +
+                ", battle=" + battle +
                 '}';
     }
 }
